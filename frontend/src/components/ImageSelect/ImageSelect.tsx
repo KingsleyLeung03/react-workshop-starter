@@ -1,6 +1,6 @@
 import Select, { components } from "react-select";
 import { getPhotoUrl } from "../../util/image-utils";
-import styles from "./ImageSelect.module.css";
+import styles from "./ImageSelect.module.scss";
 
 export function ImageSelect({ imageUrls, value, onChange }) {
   const options = imageUrls.map((url, i) => ({ value: url, label: `Avatar #${i + 1}` }));

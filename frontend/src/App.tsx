@@ -7,26 +7,23 @@ import { useState } from "react";
 
 export default function App() {
 
-  const [selectedContact, setSelectedContact] = useState(INITIAL_CONTACTS[0]);
+  // const [selectedContact, setSelectedContact] = useState(INITIAL_CONTACTS[0]);
 
-  function handleContactClick(contact: Contact) {
-    setSelectedContact(contact);
-  }
+  // function handleContactClick(contact: Contact) {
+  //   setSelectedContact(contact);
+  // }
 
   return (
     <>
       {/* TODO Add sidebar here */}
-      <Sidebar 
-      contacts={INITIAL_CONTACTS} 
-      onContactClick={handleContactClick} 
-      selectedContact={selectedContact} />
+      <Sidebar />
 
       <main className="main-area">
         {/* TODO Contact display goes here */}
         {/* <h1>Hello, WDCC! 🐮💻</h1>
         <p>My first paragraph</p> */}
         
-        <ContactDisplay contact={selectedContact}/>
+        <ContactDisplay />
         
 
         {/* TODO Edit / Delete buttons section goes here */}

@@ -1,14 +1,15 @@
 import ContactListItem from "./ContactListItem";
 import AddContactButton from "./AddContactButton";
 import { Contact } from "@/definitions/Contact";
+import { useContacts } from "../context/ContactsContextProvider";
+import { useState } from "react";
 
 /**
  * A sidebar with links to view each contact, or add new contacts.
  *
  * The contacts list can be filtered by name.
  */
-export default function Sidebar({contacts, onContactClick, selectedContact}: 
-  {contacts: Contact[], onContactClick: (contact: Contact) => void, selectedContact: Contact}) {
+export default function Sidebar() {
 
   // const getContactListItem = (contact: Contact) => <ContactListItem key={contact._id} contact={contact} />;
 
@@ -25,12 +26,29 @@ export default function Sidebar({contacts, onContactClick, selectedContact}:
   //   );
   // }
 
+  const [SearchTerm, setSearchTerm] = useState("");
+  const { contacts, selectedContact, setSelectedContact } = useContacts();
+
+  function handleSearchChange(event: React.ChangeEvent<HTMLInputElement>) {
+    setSearchTerm(event.target.value);
+  }
+
+  const filteredContacts = contacts.filter((contact: Contact) => {
+    return contact.name.toLowerCase().includes(SearchTerm.toLowerCase());
+  });
+
+  // function isMatch(contact: Contact) {
+  //   return contact.name.toLowerCase().includes(SearchTerm.toLowerCase());
+  // }
+
+  // const filteredContacts = contacts.filter(isMatch);
+
   return (
     <nav className="side-bar">
       {/* Search box */}
       <header>
         <h2>Friends</h2>
-        <input type="text" />
+        <input type="text" value={SearchTerm} onChange={handleSearchChange} />
       </header>
 
       {/* List of contacts */}
@@ -44,8 +62,11 @@ export default function Sidebar({contacts, onContactClick, selectedContact}:
 
           {/* {contactListItems} */}
           
-          {contacts?.map?.((contact) => (
-            <ContactListItem key={contact._id} contact={contact} onContactClick={onContactClick} 
+          {filteredContacts?.map?.((contact: Contact) => (
+            <ContactListItem 
+            key={contact._id} 
+            contact={contact} 
+            onContactClick={setSelectedContact} 
             isActive={contact._id === selectedContact?._id} />
           ))}
         </ul>

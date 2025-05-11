@@ -1,12 +1,15 @@
 import { getPhotoUrl } from "../util/image-utils";
 import { DEFAULT_IMAGE } from "../util/image-utils";
 import { Contact } from "../definitions/Contact";
+import { useContacts } from "../context/ContactsContextProvider";
 
-export default function ContactDisplay({ contact }: { contact: Contact }) {
+export default function ContactDisplay() {
   // const contact = props.contact;
-  console.debug(contact);
+  // console.debug(contact);
 
-  const { photoUrl, name, phoneNumber, funFact } = contact;
+  const {selectedContact} = useContacts();
+
+  const { photoUrl, name, phoneNumber, funFact } = selectedContact;
 
   return (
     <section className={"contact-display"}>

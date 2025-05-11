@@ -7,7 +7,8 @@ import { Contact } from "@/definitions/Contact";
  *
  * The contacts list can be filtered by name.
  */
-export default function Sidebar({contacts}: {contacts: Contact[]}) {
+export default function Sidebar({contacts, onContactClick, selectedContact}: 
+  {contacts: Contact[], onContactClick: (contact: Contact) => void, selectedContact: Contact}) {
 
   // const getContactListItem = (contact: Contact) => <ContactListItem key={contact._id} contact={contact} />;
 
@@ -44,7 +45,8 @@ export default function Sidebar({contacts}: {contacts: Contact[]}) {
           {/* {contactListItems} */}
           
           {contacts?.map?.((contact) => (
-            <ContactListItem key={contact._id} contact={contact} />
+            <ContactListItem key={contact._id} contact={contact} onContactClick={onContactClick} 
+            isActive={contact._id === selectedContact?._id} />
           ))}
         </ul>
       </section>

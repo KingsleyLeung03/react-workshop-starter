@@ -1,17 +1,12 @@
-import { DEFAULT_IMAGE } from "./util/image-utils";
 import ContactDisplay from "./components/ContactDisplay";
 import Sidebar from "./components/Sidebar";
-import { INITIAL_CONTACTS } from "./data/initial-contacts";
-import { Contact } from "./definitions/Contact";
 import { useState } from "react";
+import { useContacts } from "./context/ContactsContextProvider";
+import EditContactModal from "./components/EditContactModal";
 
 export default function App() {
-
-  // const [selectedContact, setSelectedContact] = useState(INITIAL_CONTACTS[0]);
-
-  // function handleContactClick(contact: Contact) {
-  //   setSelectedContact(contact);
-  // }
+  const [isEditContactVisible, setEditContactVisible] = useState(false);
+  const { selectedContact, deleteContact } = useContacts();
 
   return (
     <>
@@ -25,22 +20,25 @@ export default function App() {
         
         <ContactDisplay />
         
-
-        {/* TODO Edit / Delete buttons section goes here */}
-          <section style={{ display: "flex", gap: "1rem" }}>
-            <button className="button">
-              Edit
-            </button>
-            <button className="button red">
-              Delete
-            </button>
-          </section>
+        {/* Buttons for editing / deleting selected contact */}
+        <section style={{ display: "flex", gap: "1rem" }}>
+          <button className="button" onClick={() => setEditContactVisible(true)}>
+            Edit
+          </button>
+          <button className="button red" onClick={() => deleteContact(selectedContact._id)}>
+            Delete
+          </button>
+        </section>
 
       </main>
 
       {/* TODO Modal for adding new contacts */}
 
-      {/* TODO Modal for editing existing contacts */}
+      {/* Modal for editing existing contacts */}
+      <EditContactModal
+        visible={isEditContactVisible}
+        onClose={() => setEditContactVisible(false)}
+      />
     </>
   );
 }

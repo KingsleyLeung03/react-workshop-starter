@@ -10,58 +10,29 @@ import { useState } from "react";
  * The contacts list can be filtered by name.
  */
 export default function Sidebar() {
-
-  // const getContactListItem = (contact: Contact) => <ContactListItem key={contact._id} contact={contact} />;
-
-  // function getContactListItem(contact: Contact) {
-  //   return <ContactListItem key={contact._id} contact={contact} />;
-  // }
-
-  // const contactListItems = contacts.map(getContactListItem);
-
-  // const contactListItems = []
-  // for (let i = 0; i < contacts.length; i++) {
-  //  contactListItems.push(
-  //   getContactListItem(contacts[i])
-  //   );
-  // }
-
   const [SearchTerm, setSearchTerm] = useState("");
   const { contacts, selectedContact, setSelectedContact } = useContacts();
 
-  function handleSearchChange(event: React.ChangeEvent<HTMLInputElement>) {
-    setSearchTerm(event.target.value);
-  }
-
+  // Function to filter contacts based on search term
   const filteredContacts = contacts.filter((contact: Contact) => {
     return contact.name.toLowerCase().includes(SearchTerm.toLowerCase());
   });
 
-  // function isMatch(contact: Contact) {
-  //   return contact.name.toLowerCase().includes(SearchTerm.toLowerCase());
-  // }
-
-  // const filteredContacts = contacts.filter(isMatch);
+  function handleContactClicked(contact) {
+    setSelectedContact(contact);
+  }
 
   return (
     <nav className="side-bar">
       {/* Search box */}
       <header>
         <h2>Friends</h2>
-        <input type="text" value={SearchTerm} onChange={handleSearchChange} />
+        <input type="text" value={SearchTerm} onChange={(e) => setSearchTerm(e.target.value)} />
       </header>
 
       {/* List of contacts */}
       <section>
-        <ul>
-          {/* <ContactListItem contact={contacts[0]} />
-
-          <ContactListItem contact={contacts[1]} />
-
-          <ContactListItem contact={contacts[2]} /> */}
-
-          {/* {contactListItems} */}
-          
+        <ul>          
           {filteredContacts?.map?.((contact: Contact) => (
             <ContactListItem 
             key={contact._id} 

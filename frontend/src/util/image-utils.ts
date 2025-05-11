@@ -8,7 +8,7 @@ export const DEFAULT_IMAGE = "https://th.bing.com/th/id/OIP.PoS7waY4-VeqgNuBSxVU
  * @param {string} photoUrl the contact to check
  * @returns {string} the url of the contact's photo
  */
-export function getPhotoUrl(photoUrl) {
+export function getPhotoUrl(photoUrl: string) {
   // console.log("getPhotoUrl", photoUrl);
   if (photoUrl) {
     if (photoUrl.startsWith("http")) return photoUrl;

@@ -9,6 +9,8 @@ export default function ContactDisplay() {
 
   const {selectedContact} = useContacts();
 
+  if (!selectedContact) return <p>No contact selected</p>;
+
   const { photoUrl, name, phoneNumber, funFact } = selectedContact;
 
   return (

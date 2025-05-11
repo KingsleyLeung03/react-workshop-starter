@@ -16,7 +16,10 @@ export default function App() {
   return (
     <>
       {/* TODO Add sidebar here */}
-      <Sidebar contacts={INITIAL_CONTACTS} onContactClick={handleContactClick} selectedContact={selectedContact} />
+      <Sidebar 
+      contacts={INITIAL_CONTACTS} 
+      onContactClick={handleContactClick} 
+      selectedContact={selectedContact} />
 
       <main className="main-area">
         {/* TODO Contact display goes here */}

@@ -18,13 +18,13 @@ export default function ContactForm({ title, contact, onSubmit, hasDeleteButton,
   }, [contact?._id]);
 
   // Raises the onSubmit event when the form is submitted.
-  function handleSubmit(e) {
+  function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
     onSubmit({ _id: contact?._id, name, phoneNumber, photoUrl, funFact });
   }
 
   // Raises the onDelete event when the delete button is clicked.
-  function handleDelete(e) {
+  function handleDelete(e: React.MouseEvent<HTMLButtonElement>) {
     e.preventDefault();
     onDelete(contact?._id);
   }

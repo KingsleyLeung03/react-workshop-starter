@@ -1,6 +1,7 @@
 import { useState, createContext, useContext } from "react";
 import { INITIAL_CONTACTS } from "../data/initial-contacts";
 import { ReactNode } from "react";
+import { Contact } from "@/definitions/Contact";
 
 const ContactsContext = createContext();
 
@@ -19,12 +20,12 @@ export default function ContactsContextProvider({ children }: { children: ReactN
   // TODO Function for adding a new contact
 
   // Function for deleting a contact
-  async function deleteContact(id) {
+  async function deleteContact(id: string) {
     console.log("Deleting contact with id:", id);
   }
 
   // Function for editing a contact
-  async function editContact(contact) {
+  async function editContact(contact: Contact) {
     console.log("Editing contact:", contact);
   }
 

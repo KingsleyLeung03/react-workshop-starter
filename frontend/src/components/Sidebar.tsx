@@ -18,7 +18,7 @@ export default function Sidebar() {
     return contact.name.toLowerCase().includes(SearchTerm.toLowerCase());
   });
 
-  function handleContactClicked(contact) {
+  function handleContactClicked(contact: Contact) {
     setSelectedContact(contact);
   }
 
